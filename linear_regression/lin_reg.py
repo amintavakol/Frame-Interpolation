@@ -6,7 +6,7 @@ from keras.layers import Reshape, Concatenate, Add
 from keras.models import Model
 import random
 import keras.layers as layers
-import sherpa
+#import sherpa
 import sys
 
 import numpy as np
@@ -17,8 +17,12 @@ import matplotlib.pyplot as plt
 from keras.initializers import Initializer, Constant
 import keras.backend as K
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
 
+#Amin Cuda settings
+os.environ["CUDA_VISIBLE_DEVICES"]="2"
+#Alex Cuda settings 
+#physical_devices = tf.config.experimental.list_physical_devices('GPU')
+#tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 class AlphaInit(Initializer):
     def __init__(self, alpha, **kwargs):
@@ -109,6 +113,8 @@ if __name__=="__main__":
     y_train = f['y_train']
     y_train = np.array(y_train)
     y_train = y_train[:shape_train,:,:]
+    #Y_SHAPE = (*y_train.shape, 1)
+    #y_train = y_train.reshape(Y_SHAPE)
     
     model = build_model()
     train(model, x_train, y_train, model_name)
